@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tee.guru - TEE Bug Bounty Competition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #00d9ff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+        }
+
+        .shield-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            color: #00d9ff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 217, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            color: #00d9ff;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "🔐";
+            position: absolute;
+            left: 0;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 150, 200, 0.1) 100%);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
+            color: #1a1a2e;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #00d9ff;
+            color: #00d9ff;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+        }
+
+        .platforms {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .platform-badge {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00d9ff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .cta-button {
+                display: block;
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="shield-icon">🛡️</div>
+            <h1>tee.guru</h1>
+            <p class="tagline">Trusted Execution Environment Bug Bounty Competition</p>
+        </header>
+
+        <section>
+            <h2>What is tee.guru?</h2>
+            <p>
+                <span class="highlight">tee.guru</span> is an ongoing bug bounty competition focused on 
+                <span class="highlight">Trusted Execution Environments (TEEs)</span>. Security researchers, 
+                developers, and enthusiasts come together to create, maintain, and submit bugs for TEE 
+                applications developed on modern TEE platforms.
+            </p>
+            <p>
+                TEEs provide isolated execution environments that protect code and data from the main 
+                operating system and other applications. Finding vulnerabilities in these secure enclaves 
+                is critical for advancing the security of hardware-based protection mechanisms.
+            </p>
+        </section>
+
+        <section>
+            <h2>TEE Platforms We Cover</h2>
+            <div class="platforms">
+                <span class="platform-badge">Intel SGX</span>
+                <span class="platform-badge">AMD SEV</span>
+                <span class="platform-badge">ARM TrustZone</span>
+                <span class="platform-badge">Intel TDX</span>
+                <span class="platform-badge">RISC-V Keystone</span>
+                <span class="platform-badge">AWS Nitro Enclaves</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <ul>
+                <li><strong>Create:</strong> Develop TEE applications that challenge security researchers</li>
+                <li><strong>Maintain:</strong> Keep your TEE apps updated and running for the community</li>
+                <li><strong>Submit:</strong> Find and report bugs in TEE applications to earn recognition</li>
+                <li><strong>Collaborate:</strong> Work with fellow researchers to improve TEE security</li>
+            </ul>
+        </section>
+
+        <section class="cta-section">
+            <h2>Submit Your TEE Application</h2>
+            <p>
+                Are you building secure applications on TEE platforms? We're actively seeking submissions 
+                from developers who want to put their TEE apps to the test. Join our community and 
+                contribute to the advancement of trusted computing security.
+            </p>
+            <a href="https://github.com/pierce403/tee.guru" class="cta-button">Submit on GitHub</a>
+            <a href="https://signal.group/#PLACEHOLDER" class="cta-button secondary">Join Signal Group</a>
+        </section>
+
+        <section>
+            <h2>Join the Community</h2>
+            <p>
+                Connect with security researchers, TEE developers, and enthusiasts from around the world. 
+                Share knowledge, discuss vulnerabilities, and collaborate on making TEE technology more secure.
+            </p>
+            <p>
+                Join our <a href="https://signal.group/#PLACEHOLDER" style="color: #00d9ff;">Signal group</a> 
+                to stay updated on new submissions, competition announcements, and community discussions.
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 tee.guru | <a href="https://github.com/pierce403/tee.guru">GitHub</a></p>
+    </footer>
+</body>
+</html>
